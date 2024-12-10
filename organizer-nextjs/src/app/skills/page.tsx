@@ -1,3 +1,4 @@
+import { PageProps } from '../../../.next/types/app/skills/page'
 import { Filters } from './components/filters'
 import { SkillSection } from './components/skill-section'
 import { SkillT } from './types'
@@ -18,7 +19,7 @@ async function getSkills(searchParams: Record<string, string>) {
   return { softSkills, hardSkills }
 }
 
-export default async function SkillsPage({ searchParams }: {searchParams: Record<string, string>}) {
+export default async function SkillsPage({ searchParams }: PageProps) {
   const {softSkills, hardSkills} = await getSkills(await searchParams)
 
   return (
