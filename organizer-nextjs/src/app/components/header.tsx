@@ -26,6 +26,9 @@ export function Header() {
             <Link href="/contact" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
               Contact
             </Link>
+            <Link href="/cv" className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              CV
+            </Link>
           </div>
           <div className="hidden sm:ml-6 sm:flex sm:items-center">
             {isSignedIn ? (
@@ -56,4 +59,3 @@ export function Header() {
     </header>
   )
 }
-
