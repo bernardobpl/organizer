@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { Menu } from 'lucide-react'
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs"
+// import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs"
 
 export function Header() {
-  const { isSignedIn, user } = useUser()
+  // const { isSignedIn, user } = useUser()
 
   return (
     <header className="bg-gray-50 shadow-sm sticky top-0 z-50">
@@ -30,7 +30,7 @@ export function Header() {
               CV
             </Link>
           </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
+          {/* <div className="hidden sm:ml-6 sm:flex sm:items-center">
             {isSignedIn ? (
               <div className="flex items-center space-x-4">
                 <span className="text-sm text-gray-700">Welcome, {user.firstName}</span>
@@ -47,7 +47,7 @@ export function Header() {
                 </button>
               </SignInButton>
             )}
-          </div>
+          </div> */}
           <div className="sm:hidden flex items-center">
             <button type="button" className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-controls="mobile-menu" aria-expanded="false">
               <span className="sr-only">Open main menu</span>
