@@ -1,20 +1,18 @@
-import { SkillT } from "@/app/skills/types"
-import { ALL_SKILLS } from "../../skills/consts";
+import { ALL_SKILLS } from "./consts"
+import { SkillT } from "./types"
 
-const hasCategory = (categories: string[], skill: SkillT) => Boolean(
+export const hasCategory = (categories: string[], skill: SkillT) => Boolean(
   !categories.length || 
   categories.includes(skill.category)
 )
 
-const hasQuery = (query: string, skill: SkillT) => Boolean(
+export const hasQuery = (query: string, skill: SkillT) => Boolean(
   !query || 
   skill.name.toLowerCase().includes(query.toLowerCase()) || 
   skill.category.toLowerCase().includes(query.toLowerCase())
 )
 
-export async function GET(req: Request) {
-  const url = new URL(req.url)
-  const searchParams = Object.fromEntries(new URLSearchParams(url.search).entries());
+export function getSkills(searchParams: Record<string, string>) {
   const query = searchParams.q
   const categories = searchParams.categories?.split(',') || []
 
@@ -26,5 +24,8 @@ export async function GET(req: Request) {
     }
   }
 
-  return new Response(JSON.stringify(filteredSkills))
+  const softSkills = filteredSkills.filter(skill => skill.category === 'Soft Skills')
+  const hardSkills = filteredSkills.filter(skill => skill.category !== 'Soft Skills')
+
+  return { softSkills, hardSkills }
 }

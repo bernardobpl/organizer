@@ -1,26 +1,10 @@
 import { PageProps } from '../../../.next/types/app/skills/page'
 import { Filters } from './components/filters'
 import { SkillSection } from './components/skill-section'
-import { SkillT } from './types'
-
-async function getSkills(searchParams: Record<string, string>) {
-  const params = new URLSearchParams()
-  if (searchParams.q) params.set('q', searchParams.q)
-  if (searchParams.categories) params.set('categories', searchParams.categories)
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/skills?${params.toString()}`, {
-    cache: params.toString() ? 'no-cache' : 'no-store'
-  })
-  const skills: SkillT[] = await response.json()
-
-  const softSkills = skills.filter(skill => skill.category === 'Soft Skills')
-  const hardSkills = skills.filter(skill => skill.category !== 'Soft Skills')
-
-  return { softSkills, hardSkills }
-}
+import { getSkills } from './helpers'
 
 export default async function SkillsPage({ searchParams }: PageProps) {
-  const {softSkills, hardSkills} = await getSkills(await searchParams)
+  const {softSkills, hardSkills} = getSkills(await searchParams)
 
   return (
     <div className="bg-white">
